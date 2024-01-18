@@ -1,4 +1,4 @@
-FROM openjdk
+FROM openjdk:22-ea-30
 
 COPY target/vplyas-0.0.1-SNAPSHOT.jar .
 COPY .env .
