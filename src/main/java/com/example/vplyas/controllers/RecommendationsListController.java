@@ -4,8 +4,6 @@ import com.example.vplyas.entity.RecommendationsList;
 import com.example.vplyas.service.RecommendationsListDTOServive;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,13 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class RecommendationsListController {
 
-  private static final Logger logger = LoggerFactory.getLogger(RecommendationsListController.class);
-
   RecommendationsListDTOServive service;
 
   @PostMapping("/recommendationsList")
   public UUID createRecommendationsList(@ModelAttribute RecommendationsList recList) {
-    logger.info(recList.getStatus().toString());
     return service.createRecommendationsList(recList);
   }
 

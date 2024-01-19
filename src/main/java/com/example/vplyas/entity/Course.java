@@ -15,6 +15,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.math.BigDecimal;
+import java.net.URL;
 import java.sql.Date;
 import java.util.UUID;
 import lombok.Getter;
@@ -53,7 +54,7 @@ public class Course {
 
   private Date createdAt;
   private String description;
-  private String coverImageUrl;
-  private String previewVideoUrl;
+  private URL coverImageUrl;
+  private URL previewVideoUrl;
   private BigDecimal price;
 }
