@@ -19,7 +19,7 @@ public class CoursesRecommendationsLists {
 
   @ManyToOne
   @JoinColumn(name = "recommendations_lists_id")
-  RecommendationsLists recommendationsLists;
+  RecommendationsList recommendationsList;
 
   @ManyToOne
   @JoinColumn(name = "course_id")

@@ -1,11 +1,12 @@
 package com.example.vplyas.entity;
 
 import com.example.vplyas.enums.Status;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -19,7 +20,7 @@ import lombok.Setter;
 @Entity
 @Table(name = "recommendations_lists")
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class RecommendationsLists {
+public class RecommendationsList {
 
   @Id
   @GeneratedValue(strategy = GenerationType.UUID)
@@ -28,8 +29,9 @@ public class RecommendationsLists {
   @Column(nullable = false, unique = true)
   private String title;
 
+  @Enumerated(EnumType.STRING)
   @Column(nullable = false)
-  private Status courseStatus;
+  private Status status;
 
   @Column(unique = true)
   private String description;
