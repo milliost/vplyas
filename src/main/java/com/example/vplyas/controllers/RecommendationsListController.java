@@ -35,8 +35,7 @@ public class RecommendationsListController {
   }
 
   @GetMapping("/recommendationsList/{id}")
-  public RecommendationsList getCourseRecommendationsList(
-      @PathVariable("id") UUID id) {
+  public RecommendationsList getCourseRecommendationsList(@PathVariable("id") UUID id) {
     return service.getRecommendationsList(id);
   }
 }
