@@ -25,4 +25,11 @@ public class GlobalExceptionHandler {
     return new ResponseEntity<>(new AppError(HttpStatus.CONFLICT.value(), e.getMessage()),
         HttpStatus.CONFLICT);
   }
+
+  @ExceptionHandler
+  public ResponseEntity<AppError> catchStorageFileNotFound(StorageFileNotFoundException e) {
+    log.error(e.getMessage(), e);
+    return new ResponseEntity<>(new AppError(HttpStatus.NOT_FOUND.value(), e.getMessage()),
+        HttpStatus.NOT_FOUND);
+  }
 }
