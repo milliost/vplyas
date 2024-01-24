@@ -26,7 +26,7 @@ public class StorageServiceImpl implements StorageService {
   @Autowired
   public StorageServiceImpl(StorageProperties properties) {
 
-    if (properties.getLocation().trim().length() == 0) {
+    if (properties.getLocation().trim().isEmpty()) {
       throw new StorageException("File upload location can not be Empty.");
     }
 
