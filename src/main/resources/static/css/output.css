@@ -1656,26 +1656,6 @@
   background-color: rgb(254 242 242 / var(--tw-bg-opacity));
 }
 
-.bg-\[url\(\/public\/-1\@3x\.png\)\] {
-  background-image: url(/public/-1@3x.png);
-}
-
-.bg-\[url\(\/public\/-2\@3x\.png\)\] {
-  background-image: url(/public/-2@3x.png);
-}
-
-.bg-\[url\(\/public\/-3\@3x\.png\)\] {
-  background-image: url(/public/-3@3x.png);
-}
-
-.bg-\[url\(\/public\/-\@3x\.png\)\] {
-  background-image: url(/public/-@3x.png);
-}
-
-.bg-\[url\(\/Users\/Dimonchik\/Desktop\/VPLYAS\/assets\/cardcourse\.png\)\] {
-  background-image: url(/Users/Dimonchik/Desktop/VPLYAS/assets/cardcourse.png);
-}
-
 .bg-\[url\(\/assets\/cardcourse\.png\)\] {
   background-image: url(https://localhost/files/cardcourse.png);
 }
