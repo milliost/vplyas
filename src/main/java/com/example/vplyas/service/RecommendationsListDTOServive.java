@@ -11,6 +11,6 @@ public interface RecommendationsListDTOServive {
 
   void updateRecommendationsList(UUID id, RecommendationsList recommendationsList);
 
-  void deleteRecommendationsLis(UUID uuid);
+  void deleteRecommendationsList(UUID uuid);
 
 }

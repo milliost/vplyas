@@ -1,4 +1,4 @@
-package com.example.vplyas.config.API;
+package com.example.vplyas.config.security;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 

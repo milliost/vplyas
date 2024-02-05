@@ -14,8 +14,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "courses_recommendations_lists")
-public class CoursesRecommendationsLists {
+@Table(name = "showcase")
+public class Showcase {
 
   @ManyToOne
   @JoinColumn(name = "recommendations_lists_id")
@@ -28,4 +28,6 @@ public class CoursesRecommendationsLists {
   @Id
   @GeneratedValue(strategy = GenerationType.UUID)
   private UUID id;
+
+
 }

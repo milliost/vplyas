@@ -30,8 +30,8 @@ public class RecommendationsListController {
   }
 
   @DeleteMapping("/recommendationsList/{id}")
-  public void deleteRecommendationsList(@PathVariable("id") UUID lessonUUID) {
-    service.deleteRecommendationsLis(lessonUUID);
+  public void deleteRecommendationsList(@PathVariable("id") UUID UUID) {
+    service.deleteRecommendationsList(UUID);
   }
 
   @GetMapping("/recommendationsList/{id}")

@@ -39,7 +39,7 @@ public class RecommendationsListDTOserviceImpl implements RecommendationsListDTO
   }
 
   @Override
-  public void deleteRecommendationsLis(UUID id) {
+  public void deleteRecommendationsList(UUID id) {
     recommendationsListRepository.deleteById(id);
   }
 }
