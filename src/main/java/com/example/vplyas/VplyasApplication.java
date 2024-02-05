@@ -9,8 +9,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 
-@EnableConfigurationProperties(StorageProperties.class)
+
 @SpringBootApplication
+@EnableConfigurationProperties(StorageProperties.class)
 public class VplyasApplication {
 
   public static void main(String[] args) {

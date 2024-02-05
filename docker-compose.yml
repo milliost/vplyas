@@ -18,4 +18,4 @@ services:
   vplyas:
     build: .
     ports:
-      - "80:81"
+      - "443:443"

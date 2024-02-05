@@ -1,5 +1,5 @@
 /.idea/
 /.mvn/
 /target/
-.env
-keystore.p12
+src/main/resources/.env
+src/main/resources/keystore.p12
