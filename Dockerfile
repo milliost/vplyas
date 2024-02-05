@@ -1,8 +1,11 @@
-FROM openjdk:22-ea-30
+FROM openjdk:latest
 
-COPY target/vplyas-0.0.1-SNAPSHOT.jar .
-COPY /src/main/resources/keystore.p12 .
+COPY .env .
+COPY /keystore.p12 .
+COPY /vplyas-0.0.1-SNAPSHOT.jar .
 
-EXPOSE 81
+
+
+EXPOSE 443
 
 ENTRYPOINT ["java", "-jar", "vplyas-0.0.1-SNAPSHOT.jar"]

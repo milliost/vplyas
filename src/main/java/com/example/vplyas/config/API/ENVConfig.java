@@ -2,7 +2,7 @@ package com.example.vplyas.config.API;
 
 import io.github.cdimascio.dotenv.Dotenv;
 
-public class APIConfig {
+public class ENVConfig {
 
   public static void loadEnv() {
     Dotenv dotenv = Dotenv.configure().load();

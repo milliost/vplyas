@@ -54,10 +54,10 @@ public class ResourceController {
     return new ResponseEntity<String>(sb.toString(), httpHeaders, HttpStatus.OK);
   }
 
-  @GetMapping("/png/{code}.png")
+  @GetMapping("/img/{code}.png")
   public ResponseEntity<String> png(@PathVariable("code") String code) throws IOException {
 
-    InputStream is = getClass().getClassLoader().getResourceAsStream("static/png/" + code + ".png");
+    InputStream is = getClass().getClassLoader().getResourceAsStream("static/img/" + code + ".png");
 
     BufferedReader bf = new BufferedReader(new InputStreamReader(is));
     StringBuffer sb = new StringBuffer();
@@ -67,7 +67,7 @@ public class ResourceController {
     }
 
     final HttpHeaders httpHeaders = new HttpHeaders();
-    httpHeaders.add("Content-Type", "multipart/form-data; boundary=something");
+    httpHeaders.add("Content-Type", "multipart/form-data; boundary=sas");
     return new ResponseEntity<String>(sb.toString(), httpHeaders, HttpStatus.OK);
   }
 }

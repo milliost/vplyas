@@ -2,4 +2,4 @@
 /.mvn/
 /target/
 .env
-src/main/resources/keystore.p12
+keystore.p12

@@ -1,6 +1,6 @@
 package com.example.vplyas;
 
-import com.example.vplyas.config.API.APIConfig;
+import com.example.vplyas.config.API.ENVConfig;
 import com.example.vplyas.config.API.StorageProperties;
 import com.example.vplyas.service.StorageService;
 import org.springframework.boot.CommandLineRunner;
@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Bean;
 public class VplyasApplication {
 
   public static void main(String[] args) {
-    APIConfig.loadEnv();
+    ENVConfig.loadEnv();
     SpringApplication.run(VplyasApplication.class, args);
   }
   @Bean
