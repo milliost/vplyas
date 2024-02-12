@@ -15,7 +15,21 @@ services:
     restart: always
     ports:
       - "3305:8080"
-  vplyas:
-    build: .
+  keycloak:
+    depends_on:
+      - db
+    container_name: local_keycloak
+    environment:
+      DB_VENDOR: postgres
+      DB_ADDR: postgres
+      DB_DATABASE: ${MYSQL_DB_DB}
+      DB_USER: ${MYSQL_DB_USERNAME}
+      DB_PASSWORD: ${SQL_ROOT_PASSWORD}
+      KEYCLOAK_ADMIN: ad
+      KEYCLOAK_ADMIN_PASSWORD: 1488
+    image: quay.io/keycloak/keycloak
+    command:
+      - start-dev
     ports:
-      - "443:443"
+      - "28080:8080"
+    restart: always
