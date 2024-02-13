@@ -58,6 +58,4 @@ public class FileUploadController {
 
     return "redirect:/";
   }
-
-
 }

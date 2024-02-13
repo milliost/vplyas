@@ -1,0 +1,232 @@
+openapi: 3.0.3
+info:
+  title: API Документация by Чилинский С.А.
+  description: |-
+    Описание апишки...
+  
+  version: 1.0.11
+  contact:
+    name: Чилинский Сергей
+    email: pochta123@yandex.ru
+
+#и где то тут не хватает указания URI nbgf servers:
+#- url: https://test.mymovie/api/v1
+#description: Тестовая площадка
+#- description: Боевой АПИ
+#url: https://mymovie/api/v1
+
+#сервер уже крутится, но лавеха пока не мутится :( и по вопросам адресов и логина пароля для авторизации запроса (у нас пока basic авторизация через логин-пароль в заголовке запроса) можно обратиться к @Milliost и @dimkauz
+
+paths:
+ /course:
+    post:
+      tags:
+      - API-менеджера MyMovie #написать описание про наш проект)
+      summary: Создание курса
+      description: Метод предназначен для создания курса в каталоге курсов #корректнее будет написать просто "для создания курса" - каталог не является ни сущностью ни таблицей, мы его программно формируем из данных в БД
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/coursePost'
+      parameters: #параметры не должны дублировать request body. В этом нет практического смысла. Либо параметр, либо поле в request body. Если говорить про post запрос, то в парметрах обычно передают системные штуки - access-token, content-type, user-agent итд. А данные, которые хотим записать в БД уже в request body
+        - $ref: '#/components/parameters/teacher_id'
+        - $ref: '#/components/parameters/status'
+        - $ref: '#/components/parameters/title'
+        - $ref: '#/components/parameters/description'
+        - $ref: '#/components/parameters/style'
+        - $ref: '#/components/parameters/lessons_number'
+        - $ref: '#/components/parameters/average_lessons_duration'
+        - $ref: '#/components/parameters/cover_image_url'
+        - $ref: '#/components/parameters/preview_video_url'
+        - $ref: '#/components/parameters/price'
+        
+      responses: #нужно указать в описании условия возвращения того или иного кода ответа. Типа 200 - курс успешно создан, 403 - permission denied (например кто то ткнул запрос не имея роли "Админ") и тд, возможно прикинуть какие еще могут быть ошибки
+        200:
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/course'
+        404:
+          description: Not found response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorObject'
+
+components:
+  parameters:
+
+    teacher_id:
+      name: teacher_id
+      in: query
+      description: "Связь с преподавателем"
+      schema:
+        type: string
+    
+    status:
+      name: status
+      in: query
+      description: "Выбор значения из enum statuses. Нужно для регулирования отображения курсов на фронте."
+      schema:
+        type: string
+        
+    title:
+      name: title
+      in: query
+      description: "Название курса"
+      schema:
+        type: string
+        
+    description:
+      name: description
+      in: query
+      description: "Описание курса"
+      schema:
+        type: string
+        
+    style:
+      name: style
+      in: query
+      description: "Информация о преподаваемом на курсе стиле танца"
+      schema:
+        type: string
+        
+    lessons_number:
+      name: lessons_number
+      in: query
+      description: "Количество уроков созданных в курсе"
+      schema:
+        type: integer
+        
+    average_lessons_duration:
+      name: average_lessons_duration
+      in: query
+      description: "Средняя продолжительность видео-уроков в курсе"
+      schema:
+        type: integer
+    
+    cover_image_url:
+      name: cover_image_url
+      in: query
+      description: "Ссылка на обложку курса"
+      schema:
+        type: string
+    
+    preview_video_url:
+      name: preview_video_url
+      in: query
+      description: "Ссылка на видео трейлер курса"
+      schema:
+        type: string
+        
+    price:
+      name: price
+      in: query
+      description: "Цена курса"
+      schema:
+        type: integer
+        
+  schemas:  
+    coursePost:
+      title: coursePost
+      type: object
+      properties:
+        teacher_id:
+          type: string
+          description: Связь с преподавателем
+          example: abee324cac09
+        status:
+          type: string
+          description: Выбор значения из enum statuses. Нужно для регулирования отображения курсов на фронте.
+          example: DRAFT
+        title:
+          type: string
+          description: Название курса
+          example: Невъебенный хопчик для реальных пацанов
+        description:
+          type: string
+          description: Описание курса
+          example: Описание курса лалалала
+        style:
+          type: string
+          description: Информация о преподаваемом на курсе стиле танца
+          example: HIP_HOP
+        lessons_number:
+          type: integer
+          description: Количество уроков созданных в курсе
+          example: 10
+        average_lessons_duration:
+          type: integer
+          description: Средняя продолжительность видео-уроков в курсе
+          example: 12
+        cover_image_url:
+          type: string
+          description: Ссылка на обложку курса
+          example: https://vplyas/bb6c28a53e97b
+        preview_video_url:
+          type: string
+          description: Ссылка на видео трейлер курса
+          example: https://vplyas/d666aa3cbc21
+        price:
+          type: integer
+          description: Цена курса
+          example: 1000
+    course:
+      title: course
+      type: object
+      properties:
+        id:
+          type: string
+          description: Уникальный системный идентификатор
+          example: 563457354-236abee3-24cac09
+        teacher_id:
+          type: string
+          description: Связь с преподавателем
+          example: abee324cac09
+        status:
+          type: string
+          description: Выбор значения из enum statuses. Нужно для регулирования отображения курсов на фронте.
+          example: DRAFT
+        title:
+          type: string
+          description: Название курса
+          example: Невъебенный хопчик для реальных пацанов
+        description:
+          type: string
+          description: Описание курса
+          example: Описание курса лалалала
+        style:
+          type: string
+          description: Информация о преподаваемом на курсе стиле танца
+          example: HIP_HOP
+        lessons_number:
+          type: integer
+          description: Количество уроков созданных в курсе
+          example: 10
+        average_lessons_duration:
+          type: integer
+          description: Средняя продолжительность видео-уроков в курсе
+          example: 12
+        cover_image_url:
+          type: string
+          description: Ссылка на обложку курса
+          example: https://vplyas/bb6c28a53e97b
+        preview_video_url:
+          type: string
+          description: Ссылка на видео трейлер курса
+          example: https://vplyas/d666aa3cbc21
+        price:
+          type: integer
+          description: Цена курса
+          example: 1000
+    ErrorObject:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          example: 404
+        message:
+          type: string
+          example: Текст ошибки
