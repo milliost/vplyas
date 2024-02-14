@@ -229,4 +229,4 @@ components:
           example: 404
         message:
           type: string
-          example: Текст ошибки
+          example: Текст ошибки "и тут был sas"
