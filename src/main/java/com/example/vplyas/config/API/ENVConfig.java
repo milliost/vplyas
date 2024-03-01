@@ -15,6 +15,7 @@ public class ENVConfig {
     String keyStorePassword = dotenv.get("KEYSTORE_PASSWORD");
     String keycloakUrl  = dotenv.get("YOUR_KEYCLOAK_URL");
     String realmName  = dotenv.get("YOUR_REALM_NAME");
+    String clientSecret = dotenv.get("CLIENT_SECRET");
 
     System.setProperty("MYSQL_DB_HOST", host);
     System.setProperty("MYSQL_DB_PORT", port);
@@ -24,6 +25,7 @@ public class ENVConfig {
     System.setProperty("KEYSTORE_PASSWORD", keyStorePassword);
     System.setProperty("YOUR_KEYCLOAK_URL", keycloakUrl);
     System.setProperty("YOUR_REALM_NAME", realmName);
+    System.setProperty("CLIENT_SECRET", clientSecret);
   }
 
 }

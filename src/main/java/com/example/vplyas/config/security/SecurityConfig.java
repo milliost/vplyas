@@ -1,6 +1,5 @@
 package com.example.vplyas.config.security;
 
-import java.util.List;
 import java.util.stream.Stream;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,7 +20,12 @@ public class SecurityConfig {
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     http.oauth2ResourceServer((oauth2) -> oauth2.jwt(Customizer.withDefaults()));
+    http.oauth2Login(Customizer.withDefaults());
     return http.authorizeHttpRequests(c -> c.requestMatchers("/error").permitAll()
+            .requestMatchers("/").permitAll()
+            .requestMatchers("/img/**").permitAll()
+            .requestMatchers("/css/**").permitAll()
+            .requestMatchers("/js/**").permitAll()
             .requestMatchers(HttpMethod.POST).hasAuthority("ROLE_ADMIN")
             .requestMatchers(HttpMethod.PUT).hasAuthority("ROLE_ADMIN")
             .requestMatchers(HttpMethod.PATCH).hasAuthority("ROLE_ADMIN")
@@ -38,13 +42,13 @@ public class SecurityConfig {
     coverter.setJwtGrantedAuthoritiesConverter(jwt -> {
 
       var authorities = jwtGrantedAuthoritiesConverter.convert(jwt);
-      var roles = (List<String>) jwt.getClaimAsMap("realm_access").get("roles");
+      var roles = jwt.getClaimAsStringList("spring_sec_roles");
 
       return Stream.concat(authorities.stream(),
-          roles.stream()
-              .filter(role -> role.startsWith("ROLE_"))
-              .map(SimpleGrantedAuthority::new)
-              .map(GrantedAuthority.class::cast))
+              roles.stream()
+                  .filter(role -> role.startsWith("ROLE_"))
+                  .map(SimpleGrantedAuthority::new)
+                  .map(GrantedAuthority.class::cast))
           .toList();
     });
     return coverter;

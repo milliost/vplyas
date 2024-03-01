@@ -1,0 +1,39 @@
+server:
+  ssl:
+    keyAlias: tomcat
+    key-store-password: ${KEYSTORE_PASSWORD}
+    keyStoreType: PKCS12
+    key-store: keystore.p12
+  port: '443'
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${YOUR_KEYCLOAK_URL}/realms/${YOUR_REALM_NAME}
+      client:
+        provider:
+          keycloak:
+            issuer-uri: ${YOUR_KEYCLOAK_URL}/realms/${YOUR_REALM_NAME}
+            user-name-attribute: preferred_username
+        registration:
+          keycloak:
+            client-secret: ${CLIENT_SECRET}
+            client-id: vplyasBack
+            scope: openid
+  servlet:
+    multipart:
+      max-file-size: 128MB
+      max-request-size: 128MB
+  datasource:
+    password: ${SQL_ROOT_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+    username: ${MYSQL_DB_USERNAME}
+    url: jdbc:postgresql://${MYSQL_DB_HOST}:${MYSQL_DB_PORT}/${MYSQL_DB_DB}
+  jpa:
+    show-sql: 'true'
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: 'true'
