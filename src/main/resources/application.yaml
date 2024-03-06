@@ -18,8 +18,8 @@ spring:
             user-name-attribute: preferred_username
         registration:
           keycloak:
+            client-id: backEnd
             client-secret: ${CLIENT_SECRET}
-            client-id: vplyasBack
             scope: openid
   servlet:
     multipart:
